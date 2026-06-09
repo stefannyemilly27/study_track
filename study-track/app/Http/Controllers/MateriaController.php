@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Materia;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreMateriaRequest;
 use App\Http\Requests\UpdateMateriaRequest;
 
@@ -15,8 +15,8 @@ class MateriaController extends Controller
     public function index()
     {
         $materias = Materia::where('user_id', auth()->id())->get();
-        return view('materias.index', compact('materias'));
 
+        return view('materias.index', compact('materias'));
     }
 
     /**
@@ -39,12 +39,14 @@ class MateriaController extends Controller
             'cor' => $request->cor,
             'user_id' => auth()->id(),
         ]);
+
+        return redirect()->route('materias.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Materia $materia)
     {
         //
     }
@@ -52,16 +54,17 @@ class MateriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Materia $materia)
     {
         abort_if($materia->user_id !== auth()->id(), 403);
+
         return view('materias.edit', compact('materia'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateMateriaRequest $request, Materia $materia)
     {
         abort_if($materia->user_id !== auth()->id(), 403);
 
@@ -81,7 +84,9 @@ class MateriaController extends Controller
     public function destroy(Materia $materia)
     {
         abort_if($materia->user_id !== auth()->id(), 403);
+
         $materia->delete();
-        return redirect()->route('materia.index');
+
+        return redirect()->route('materias.index');
     }
 }

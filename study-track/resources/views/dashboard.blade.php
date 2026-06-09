@@ -1,17 +1,44 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - StudyTrack</title>
+</head>
+
+<body>
+
+    <h1>StudyTrack</h1>
+
+    <h2>Menu Principal</h2>
+
+    <hr>
+
+    <a href="{{ route('materias.index') }}">
+        Gerenciar Matérias
+    </a>
+
+    <br><br>
+
+    <a href="#">
+        Gerenciar Atividades
+    </a>
+
+    <br><br>
+
+    <a href="#">
+        Gerenciar Provas
+    </a>
+
+    <br><br>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit">
+            Sair
+        </button>
+    </form>
+
+</body>
+
+</html>
