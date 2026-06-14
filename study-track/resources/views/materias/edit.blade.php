@@ -61,7 +61,9 @@
 
         <button type="submit">Atualizar</button>
 
-        <button type="button" onclick="history.back()">Voltar</button>
+        <a href="{{ route('materias.index') }}">
+            Cancelar
+        </a>
 
     </form>
 

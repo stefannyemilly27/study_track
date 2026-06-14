@@ -44,7 +44,9 @@
 
         <button type="submit">Salvar</button>
 
-        <button type="button" onclick="history.back()">Voltar</button>
+        <a href="{{ route('materias.index') }}">
+            Cancelar
+        </a>
 
     </form>
 

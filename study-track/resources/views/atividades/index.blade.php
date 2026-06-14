@@ -66,7 +66,9 @@
 
         <hr>
 
-        <button type="button" onclick="history.back()">Voltar</button>
+        <a href="{{ route('dashboard') }}">
+            Voltar ao Menu Principal
+        </a>
 
     @endforeach
 
