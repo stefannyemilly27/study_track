@@ -24,7 +24,7 @@ class StoreMateriaRequest extends FormRequest
     {
         return [
             'nome' => 'required|min:1',
-            'professor' => 'required|min:2',
+            'professor' => 'required|min:1',
         ];
     }
 }

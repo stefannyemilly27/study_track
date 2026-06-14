@@ -59,9 +59,9 @@
 
         <br>
 
-        <button type="submit">
-            Atualizar
-        </button>
+        <button type="submit">Atualizar</button>
+
+        <button type="button" onclick="history.back()">Voltar</button>
 
     </form>
 

@@ -2,63 +2,114 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Atividade;
+use App\Models\Materia;
+use App\Http\Requests\StoreAtividadeRequest;
+use App\Http\Requests\UpdateAtividadeRequest;
 
 class AtividadeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $atividades = Atividade::where(
+            'user_id',
+            auth()->id()
+        )->get();
+
+        return view(
+            'atividades.index',
+            compact('atividades')
+        );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $materias = Materia::where(
+            'user_id',
+            auth()->id()
+        )->get();
+
+        return view(
+            'atividades.create',
+            compact('materias')
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreAtividadeRequest $request)
+    {
+        Atividade::create([
+            'titulo' => $request->titulo,
+            'descricao' => $request->descricao,
+            'data_entrega' => $request->data_entrega,
+            'status' => $request->status,
+            'materia_id' => $request->materia_id,
+            'user_id' => auth()->id(),
+        ]);
+
+        return redirect()
+            ->route('atividades.index')
+            ->with('success', 'Atividade cadastrada com sucesso!');
+    }
+
+    public function show(Atividade $atividade)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Atividade $atividade)
     {
-        //
+        abort_if(
+            $atividade->user_id !== auth()->id(),
+            403
+        );
+
+        $materias = Materia::where(
+            'user_id',
+            auth()->id()
+        )->get();
+
+        return view(
+            'atividades.edit',
+            compact(
+                'atividade',
+                'materias'
+            )
+        );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+    public function update(
+        UpdateAtividadeRequest $request,
+        Atividade $atividade
+    ) {
+        abort_if(
+            $atividade->user_id !== auth()->id(),
+            403
+        );
+
+        $atividade->update([
+            'titulo' => $request->titulo,
+            'descricao' => $request->descricao,
+            'data_entrega' => $request->data_entrega,
+            'status' => $request->status,
+            'materia_id' => $request->materia_id,
+        ]);
+
+        return redirect()
+            ->route('atividades.index')
+            ->with('success', 'Atividade atualizada com sucesso!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Atividade $atividade)
     {
-        //
-    }
+        abort_if(
+            $atividade->user_id !== auth()->id(),
+            403
+        );
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $atividade->delete();
+
+        return redirect()
+            ->route('atividades.index')
+            ->with('success', 'Atividade excluída com sucesso!');
     }
 }

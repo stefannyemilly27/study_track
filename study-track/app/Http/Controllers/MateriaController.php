@@ -40,7 +40,9 @@ class MateriaController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return redirect()->route('materias.index');
+        return redirect()
+            ->route('materias.index')
+            ->with('success', 'Matéria cadastrada com sucesso!');
     }
 
     /**
@@ -75,7 +77,9 @@ class MateriaController extends Controller
             'cor' => $request->cor,
         ]);
 
-        return redirect()->route('materias.index');
+        return redirect()
+            ->route('materias.index')
+            ->with('success', 'Matéria atualizada com sucesso!');
     }
 
     /**
@@ -87,6 +91,8 @@ class MateriaController extends Controller
 
         $materia->delete();
 
-        return redirect()->route('materias.index');
+        return redirect()
+            ->route('materias.index')
+            ->with('success', 'Matéria excluída com sucesso!');
     }
 }

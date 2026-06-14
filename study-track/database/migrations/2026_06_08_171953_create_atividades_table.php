@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('atividades', function (Blueprint $table) {
             $table->id();
+
             $table->string('titulo');
             $table->text('descricao')->nullable();
             $table->date('data_entrega');
 
             $table->enum('status', [
-                'pendente',
-                'em_andamento',
-                'concluida'
-            ]);
+                'Pendente',
+                'Em andamento',
+                'Concluída'
+            ])->default('Pendente');
 
             $table->foreignId('materia_id')
                 ->constrained()

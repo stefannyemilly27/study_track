@@ -23,7 +23,9 @@ class StoreAtividadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'titulo' => 'required|min:1',
+            'data_entrega' => 'required|date',
+            'materia_id' => 'required|exists:materias,id',
         ];
     }
 }

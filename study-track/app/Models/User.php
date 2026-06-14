@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Materia;
+use App\Models\Atividade;
 
 class User extends Authenticatable
 {
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function materias()
     {
         return $this->hasMany(Materia::class);
+    }
+
+    public function atividades()
+    {
+    return $this->hasMany(Atividade::class);
     }
 }

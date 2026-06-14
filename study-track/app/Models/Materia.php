@@ -14,7 +14,7 @@ class Materia extends Model
         'professor',
         'descricao',
         'cor',
-        'user_id'
+        'user_id',
     ];
 
     public function user()

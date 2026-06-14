@@ -7,6 +7,19 @@
 </head>
 
 <body>
+    @if(session('success'))
+
+    <div style="
+        background: #d4edda;
+        color: #155724;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    ">
+        {{ session('success') }}
+    </div>
+
+@endif
 
     <h1>Matérias</h1>
 
@@ -44,6 +57,8 @@
         </div>
 
         <hr>
+
+        <button type="button" onclick="history.back()">Voltar</button>
 
     @endforeach
 

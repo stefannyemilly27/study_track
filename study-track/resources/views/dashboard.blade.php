@@ -8,6 +8,20 @@
 
 <body>
 
+    <h1>
+        Seja bem-vindo(a), {{ auth()->user()->name }}!
+    </h1>
+
+    <p>
+        Que bom ter você de volta ao StudyTrack.
+    </p>
+
+    <p>
+        E-mail: {{ auth()->user()->email }}
+    </p>
+
+    <hr>
+
     <h1>StudyTrack</h1>
 
     <h2>Menu Principal</h2>
@@ -20,13 +34,13 @@
 
     <br><br>
 
-    <a href="#">
+    <a href="{{ route('atividades.index') }}">
         Gerenciar Atividades
     </a>
 
     <br><br>
 
-    <a href="#">
+    <a href="{{ route('provas.index') }}">
         Gerenciar Provas
     </a>
 
@@ -34,6 +48,7 @@
 
     <form method="POST" action="{{ route('logout') }}">
         @csrf
+
         <button type="submit">
             Sair
         </button>

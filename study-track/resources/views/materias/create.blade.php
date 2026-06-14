@@ -42,9 +42,9 @@
 
         <br>
 
-        <button type="submit">
-            Salvar
-        </button>
+        <button type="submit">Salvar</button>
+
+        <button type="button" onclick="history.back()">Voltar</button>
 
     </form>
 

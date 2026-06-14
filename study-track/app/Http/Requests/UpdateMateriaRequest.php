@@ -23,7 +23,8 @@ class UpdateMateriaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nome' => 'required|min:1',
+            'professor' => 'required|min:1',
         ];
     }
 }
