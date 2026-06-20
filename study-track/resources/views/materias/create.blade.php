@@ -48,6 +48,10 @@
             Cancelar
         </a>
 
+        <a href="{{ route('dashboard') }}">
+            ⬅ Voltar
+        </a>
+
     </form>
 
 </body>

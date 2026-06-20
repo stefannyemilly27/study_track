@@ -2,71 +2,71 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prova;
 use Illuminate\Http\Request;
+use App\Models\Materia;
 
 class ProvaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $provas = Prova::where('user_id', auth()->id())
+            ->with('materia')
+            ->orderBy('data_prova')
+            ->get();
+
+        return view('provas.index', compact('provas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        $materias = Materia::where('user_id', auth()->id())->get();
+
+        return view('provas.create', compact('materias'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         Prova::create([
             'titulo' => $request->titulo,
-            'descricao' => $request->descricao,
             'nota' => $request->nota,
-            'bimestre' => $request->bimestre,
             'data_prova' => $request->data_prova,
             'materia_id' => $request->materia_id,
             'user_id' => auth()->id(),
-]);
+        ]);
+
+        return redirect()
+            ->route('dashboard')
+            ->with('success', 'Prova adicionada com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(Prova $prova)
     {
-        //
+        return view('provas.edit', compact('prova'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, Prova $prova)
     {
-        //
+        $prova->update([
+            'titulo' => $request->titulo,
+            'nota' => $request->nota,
+            'data_prova' => $request->data_prova,
+            'materia_id' => $request->materia_id,
+        ]);
+
+        return redirect()
+            ->route('provas.index')
+            ->with('success', 'Prova atualizada com sucesso!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Prova $prova)
     {
-        //
-    }
+        $prova->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()
+            ->route('provas.index')
+            ->with('success', 'Prova excluída com sucesso!');
     }
 }

@@ -11,9 +11,7 @@ class Prova extends Model
 {
     protected $fillable = [
         'titulo',
-        'descricao',
         'nota',
-        'bimestre',
         'data_prova',
         'materia_id',
         'user_id'
@@ -27,10 +25,5 @@ class Prova extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function provas()
-    {
-        return $this->hasMany(Prova::class);
     }
 }

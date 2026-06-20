@@ -59,7 +59,7 @@
         <hr>
 
         <a href="{{ route('dashboard') }}">
-            Voltar ao Menu Principal
+            ⬅ Voltar
         </a>
 
     @endforeach

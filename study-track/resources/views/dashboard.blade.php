@@ -8,52 +8,83 @@
 
 <body>
 
-    <h1>
-        Seja bem-vindo(a), {{ auth()->user()->name }}!
-    </h1>
+<h1>Seja bem-vindo(a), {{ auth()->user()->name }}!</h1>
 
-    <p>
-        Que bom ter você de volta ao StudyTrack.
-    </p>
+<p>E-mail: {{ auth()->user()->email }}</p>
 
-    <p>
-        E-mail: {{ auth()->user()->email }}
-    </p>
+<hr>
 
-    <hr>
+<h2>Menu</h2>
 
-    <h1>StudyTrack</h1>
+<a href="{{ route('materias.index') }}">Matérias</a><br><br>
+<a href="{{ route('atividades.index') }}">Atividades</a><br><br>
+<a href="{{ route('provas.index') }}">Provas</a><br><br>
 
-    <h2>Menu Principal</h2>
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit">Sair</button>
+</form>
 
-    <hr>
+<hr>
 
-    <a href="{{ route('materias.index') }}">
-        Gerenciar Matérias
-    </a>
+<h2>Desempenho por matéria</h2>
 
-    <br><br>
+@if(isset($dadosGrafico) && count($dadosGrafico) > 0)
 
-    <a href="{{ route('atividades.index') }}">
-        Gerenciar Atividades
-    </a>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <br><br>
+    @foreach($dadosGrafico as $index => $item)
 
-    <a href="{{ route('provas.index') }}">
-        Gerenciar Provas
-    </a>
+        <h3>{{ $item['materia'] }}</h3>
 
-    <br><br>
+        <p><strong>Status:</strong> {{ $item['status'] }}</p>
 
-    <form method="POST" action="{{ route('logout') }}">
-        @csrf
+        <canvas id="grafico{{ $index }}"></canvas>
 
-        <button type="submit">
-            Sair
-        </button>
-    </form>
+        <script>
+            new Chart(document.getElementById('grafico{{ $index }}'), {
+                type: 'line',
+
+                data: {
+                    labels: @json(range(1, count($item['notas'] ?? []))),
+
+                    datasets: [
+                        {
+                            label: 'Notas',
+                            data: @json($item['notas'] ?? []),
+                            borderWidth: 2,
+                            fill: false
+                        },
+                        {
+                            label: 'Média acumulada',
+                            data: @json($item['media'] ?? []),
+                            borderWidth: 2,
+                            fill: false
+                        }
+                    ]
+                },
+
+                options: {
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: function(value) {
+                                    return Number(value).toFixed(2);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <hr>
+
+    @endforeach
+
+@else
+    <p>Você ainda não tem provas cadastradas.</p>
+@endif
 
 </body>
-
 </html>
