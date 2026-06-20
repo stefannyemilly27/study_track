@@ -27,7 +27,15 @@ class ProvaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Prova::create([
+            'titulo' => $request->titulo,
+            'descricao' => $request->descricao,
+            'nota' => $request->nota,
+            'bimestre' => $request->bimestre,
+            'data_prova' => $request->data_prova,
+            'materia_id' => $request->materia_id,
+            'user_id' => auth()->id(),
+]);
     }
 
     /**

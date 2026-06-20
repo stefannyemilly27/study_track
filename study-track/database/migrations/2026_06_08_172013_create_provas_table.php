@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->decimal('nota', 4, 2);
-            $table->integer('peso');
+            $table->integer('bimestre');
             $table->date('data_prova');
             
             $table->foreignId('materia_id')

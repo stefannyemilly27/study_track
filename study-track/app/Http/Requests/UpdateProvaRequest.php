@@ -23,7 +23,16 @@ class UpdateProvaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'titulo' => 'required|min:1',
+
+            'nota' => 'required|numeric',
+
+            'bimestre' => 'required|integer',
+
+            'data_prova' => 'required|date',
+
+            'materia_id' => 'required|exists:materias,id',
+
         ];
     }
 }
