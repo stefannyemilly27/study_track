@@ -61,9 +61,7 @@
 
         <button type="submit">Atualizar</button>
 
-        <a href="{{ route('materias.index') }}">
-            Cancelar
-        </a>
+        <a href="{{ route('materias.index') }}">Cancelar</a>
 
     </form>
 

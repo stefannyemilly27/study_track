@@ -48,9 +48,7 @@
             {{ $atividade->materia->nome }}
         </p>
 
-        <a href="{{ route('atividades.edit', $atividade) }}">
-            Editar
-        </a>
+        <a href="{{ route('atividades.edit', $atividade) }}">Editar</a>
 
         <form
             action="{{ route('atividades.destroy', $atividade) }}"
@@ -59,16 +57,13 @@
             @csrf
             @method('DELETE')
 
-            <button type="submit">
-                Excluir
-            </button>
+            <button type="submit">Excluir</button>
+
         </form>
 
         <hr>
 
-        <a href="{{ route('dashboard') }}">
-            ⬅ Voltar
-        </a>
+        <a href="{{ route('dashboard') }}">⬅ Voltar</a>
 
     @endforeach
 

@@ -23,9 +23,7 @@
 
     <h1>Matérias</h1>
 
-    <a href="{{ route('materias.create') }}">
-        Nova Matéria
-    </a>
+    <a href="{{ route('materias.create') }}">Nova Matéria</a>
 
     <hr>
 
@@ -39,18 +37,14 @@
 
             <p>{{ $materia->descricao }}</p>
 
-            <a href="{{ route('materias.edit', $materia->id) }}">
-                Editar
-            </a>
+            <a href="{{ route('materias.edit', $materia->id) }}">Editar</a>
 
             <form action="{{ route('materias.destroy', $materia->id) }}" method="POST">
 
                 @csrf
                 @method('DELETE')
 
-                <button type="submit">
-                    Excluir
-                </button>
+                <button type="submit">Excluir</button>
 
             </form>
 
@@ -58,9 +52,7 @@
 
         <hr>
 
-        <a href="{{ route('dashboard') }}">
-            ⬅ Voltar
-        </a>
+        <a href="{{ route('dashboard') }}">⬅ Voltar</a>
 
     @endforeach
 

@@ -69,15 +69,11 @@
 
         <br>
 
-        <a href="{{ route('atividades.index') }}">
-            Cancelar
-        </a>
+        <a href="{{ route('atividades.index') }}">Cancelar</a>
 
         <br>
 
-        <a href="{{ route('dashboard') }}">
-            ⬅ Voltar
-        </a>
+        <a href="{{ route('dashboard') }}">⬅ Voltar</a>
 
     </form>
 

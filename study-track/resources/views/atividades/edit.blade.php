@@ -105,9 +105,9 @@
 
         <button type="submit">Atualizar</button>
 
-        <a href="{{ route('atividades.index') }}">
-            Cancelar
-        </a>
+        <br>
+        
+        <a href="{{ route('atividades.index') }}">Cancelar</a>
 
     </form>
 
