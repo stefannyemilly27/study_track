@@ -7,6 +7,20 @@
     </head>
     <body>
 
+        @if(session('success'))
+
+            <div style="
+                background: #d4edda;
+                color: #155724;
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 5px;
+            ">
+                {{ session('success') }}
+            </div>
+
+        @endif
+        
     <h1>Provas</h1>
 
     <a href="{{ route('provas.create') }}">+ Criar Prova</a>
@@ -22,6 +36,8 @@
             Matéria: {{ $prova->materia->nome ?? 'Sem matéria' }}
         </p>
 
+        <a href="{{ route('provas.edit', $prova->id) }}">Editar</a>
+
         <form action="{{ route('provas.destroy', $prova->id) }}" method="POST">
             @csrf
             @method('DELETE')
@@ -32,7 +48,6 @@
 
     @endforeach
 
-        <a href="{{ route('dashboard') }}">⬅ Voltar</a>
-
     </body>
+    <a href="{{ route('dashboard') }}">⬅ Voltar</a>
 </html>

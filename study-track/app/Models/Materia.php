@@ -13,7 +13,6 @@ class Materia extends Model
         'nome',
         'professor',
         'descricao',
-        'cor',
         'user_id',
     ];
 

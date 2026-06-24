@@ -48,18 +48,6 @@
 
             <br>
 
-            <div>
-                <label>Cor</label>
-
-                <input
-                    type="color"
-                    name="cor"
-                    value="{{ $materia->cor }}"
-                >
-            </div>
-
-            <br>
-
             <button type="submit">Atualizar</button>
 
             <a href="{{ route('materias.index') }}">Cancelar</a>

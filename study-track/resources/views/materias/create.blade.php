@@ -36,18 +36,13 @@
 
             <br>
 
-            <div>
-                <label>Cor</label>
-                <input type="color" name="cor">
-            </div>
-
             <br>
 
             <button type="submit">Salvar</button>
 
-            <a href="{{ route('materias.index') }}">
-                Cancelar
-            </a>
+            <br>
+
+            <br>
 
             <a href="{{ route('dashboard') }}">⬅ Voltar</a>
 

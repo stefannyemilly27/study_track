@@ -36,7 +36,6 @@ class MateriaController extends Controller
             'nome' => $request->nome,
             'professor' => $request->professor,
             'descricao' => $request->descricao,
-            'cor' => $request->cor,
             'user_id' => auth()->id(),
         ]);
 
@@ -74,7 +73,6 @@ class MateriaController extends Controller
             'nome' => $request->nome,
             'professor' => $request->professor,
             'descricao' => $request->descricao,
-            'cor' => $request->cor,
         ]);
 
         return redirect()

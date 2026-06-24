@@ -70,8 +70,7 @@
 
             <br>
 
-            <a href="{{ route('atividades.index') }}">Cancelar</a>
-
+            
             <br>
 
             <a href="{{ route('dashboard') }}">⬅ Voltar</a>

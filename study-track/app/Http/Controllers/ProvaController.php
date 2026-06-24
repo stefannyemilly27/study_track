@@ -38,7 +38,7 @@ class ProvaController extends Controller
         ]);
 
         return redirect()
-            ->route('dashboard')
+            ->route('provas.index')
             ->with('success', 'Prova adicionada com sucesso!');
     }
 

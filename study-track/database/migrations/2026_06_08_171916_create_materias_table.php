@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nome');
             $table->string('professor');
             $table->text('descricao')->nullable();
-            $table->string('cor')->nullable();
             
             $table->foreignId('user_id')
                 ->constrained()

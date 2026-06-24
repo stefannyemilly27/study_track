@@ -20,16 +20,15 @@ class DashboardController extends Controller
             $provas = $provas->sortBy('data_prova')->values();
 
             $notas = $provas->pluck('nota')
-                ->map(fn($n) => round((float) $n, 2))
+                ->map(fn ($n) => round((float) $n, 2))
                 ->values()
                 ->toArray();
 
-            // se não tiver provas, ignora matéria
             if (count($notas) === 0) {
                 continue;
             }
 
-            // média acumulada
+            // Média acumulada
             $mediaAcumulada = [];
             $soma = 0;
 
@@ -38,20 +37,40 @@ class DashboardController extends Controller
                 $mediaAcumulada[] = round($soma / ($i + 1), 2);
             }
 
-            // status
-            if (count($notas) < 2) {
-                $status = "Sem dados suficientes";
+            // Estatísticas
+            $mediaFinal = round(array_sum($notas) / count($notas), 2);
+
+            $melhorNota = max($notas);
+
+            $piorNota = min($notas);
+
+            $quantidadeProvas = count($notas);
+
+            // Situação
+            if ($mediaFinal >= 7) {
+                $situacao = 'Aprovado';
+            } elseif ($mediaFinal >= 5) {
+                $situacao = 'Recuperação';
+            } else {
+                $situacao = 'Reprovado';
+            }
+
+            // Evolução
+            if ($quantidadeProvas < 2) {
+
+                $evolucao = 'Sem dados suficientes';
+
             } else {
 
-                $ultimo = end($mediaAcumulada);
-                $penultimo = $mediaAcumulada[count($mediaAcumulada) - 2];
+                $ultimaNota = $notas[$quantidadeProvas - 1];
+                $penultimaNota = $notas[$quantidadeProvas - 2];
 
-                if ($ultimo > $penultimo) {
-                    $status = "📈 Melhorou";
-                } elseif ($ultimo < $penultimo) {
-                    $status = "📉 Piorou";
+                if ($ultimaNota > $penultimaNota) {
+                    $evolucao = '📈 Melhorando';
+                } elseif ($ultimaNota < $penultimaNota) {
+                    $evolucao = '📉 Piorando';
                 } else {
-                    $status = "➖ Manteve";
+                    $evolucao = '➖ Estável';
                 }
             }
 
@@ -59,7 +78,12 @@ class DashboardController extends Controller
                 'materia' => $provas->first()->materia->nome ?? 'Sem nome',
                 'notas' => $notas,
                 'media' => $mediaAcumulada,
-                'status' => $status
+                'media_final' => $mediaFinal,
+                'melhor_nota' => $melhorNota,
+                'pior_nota' => $piorNota,
+                'quantidade_provas' => $quantidadeProvas,
+                'situacao' => $situacao,
+                'evolucao' => $evolucao
             ];
         }
 
