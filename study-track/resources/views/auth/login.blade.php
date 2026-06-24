@@ -3,114 +3,92 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - StudyTrack</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
 
-    <h1>StudyTrack</h1>
+    <div class="auth-container">
 
-    <h2>Login</h2>
+        <div class="auth-card">
 
-    @if(session('success'))
+            <h1>📚 StudyTrack</h1>
 
-        <div style="
-            background: #d4edda;
-            color: #155724;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-        ">
-            {{ session('success') }}
-        </div>
+            <h2>Login</h2>
 
-    @endif
+            @if(session('success'))
+                <div class="alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-    @if(session('status'))
+            @if(session('status'))
+                <div class="alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-        <div>
-            {{ session('status') }}
-        </div>
+            <form method="POST" action="{{ route('login') }}">
 
-    @endif
+                @csrf
 
-    <form method="POST" action="{{ route('login') }}">
+                <div class="form-group">
 
-        @csrf
+                    <label for="email">
+                        E-mail
+                    </label>
 
-        <div>
-            <label for="email">
-                E-mail
-            </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        required
+                        autofocus
+                    >
+
+                    @error('email')
+                        <p>{{ $message }}</p>
+                    @enderror
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    >
+
+                    @error('password')
+                        <p>{{ $message }}</p>
+                    @enderror
+
+                </div>
+
+                <button type="submit">
+                    Entrar
+                </button>
+
+            </form>
 
             <br>
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                value="{{ old('email') }}"
-                required
-                autofocus
-            >
-
-            @error('email')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
-
-        <br>
-
-        <div>
-            <label for="password">
-                Senha
-            </label>
-
-            <br>
-
-            <input
-                type="password"
-                id="password"
-                name="password"
-                required
-            >
-
-            @error('password')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
-
-        <br>
-
-        <div>
-
-            <input
-                type="checkbox"
-                id="remember"
-                name="remember"
-            >
-
-            <label for="remember">
-                Lembrar de mim
-            </label>
-
-        </div>
-
-        <br>
-
-        @if (Route::has('password.request'))
-
-            <a href="{{ route('password.request') }}">
-                Esqueceu sua senha?
+            <a href="{{ route('register') }}">
+                Criar uma conta
             </a>
 
-            <br><br>
+        </div>
 
-        @endif
-
-        <button type="submit">Entrar</button>
-
-    </form>
+    </div>
 
 </body>
 

@@ -4,42 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - StudyTrack</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
-<body>
+    <body>
 
-<h1>Seja bem-vindo(a), {{ auth()->user()->name }}!</h1>
+    <h1>Seja bem-vindo(a), {{ auth()->user()->name }}!</h1>
 
-<p>E-mail: {{ auth()->user()->email }}</p>
+    <p>E-mail: {{ auth()->user()->email }}</p>
 
-<hr>
+    <hr>
 
-<h2>Menu</h2>
+    <h2>Menu</h2>
 
-<a href="{{ route('materias.index') }}">Matérias</a><br><br>
-<a href="{{ route('atividades.index') }}">Atividades</a><br><br>
-<a href="{{ route('provas.index') }}">Provas</a><br><br>
+    <a href="{{ route('materias.index') }}">Matérias</a><br><br>
+    <a href="{{ route('atividades.index') }}">Atividades</a><br><br>
+    <a href="{{ route('provas.index') }}">Provas</a><br><br>
 
-<form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <button type="submit">Sair</button>
-</form>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit">Sair</button>
+    </form>
 
-<hr>
+    <hr>
 
-<h2>Desempenho por matéria</h2>
+    <h2>Desempenho por matéria</h2>
 
-@if(isset($dadosGrafico) && count($dadosGrafico) > 0)
+    @if(isset($dadosGrafico) && count($dadosGrafico) > 0)
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    @foreach($dadosGrafico as $index => $item)
+        @foreach($dadosGrafico as $index => $item)
 
-        <h3>{{ $item['materia'] }}</h3>
+            <h3>{{ $item['materia'] }}</h3>
 
-        <p><strong>Status:</strong> {{ $item['status'] }}</p>
+            <p><strong>Status:</strong> {{ $item['status'] }}</p>
 
-        <canvas id="grafico{{ $index }}"></canvas>
+            <canvas id="grafico{{ $index }}"></canvas>
 
         <script>
             new Chart(document.getElementById('grafico{{ $index }}'), {
@@ -78,13 +79,13 @@
             });
         </script>
 
-        <hr>
+            <hr>
 
-    @endforeach
+        @endforeach
 
-@else
-    <p>Você ainda não tem provas cadastradas.</p>
-@endif
+    @else
+        <p>Você ainda não tem provas cadastradas.</p>
+    @endif
 
-</body>
+    </body>
 </html>

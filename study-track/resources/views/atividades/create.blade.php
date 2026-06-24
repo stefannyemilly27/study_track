@@ -1,81 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Criar Atividade</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Criar Atividade</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
 
-<body>
+    <body>
 
-    <h1>Criar Atividade</h1>
+        <h1>Criar Atividade</h1>
 
-    <form action="{{ route('atividades.store') }}" method="POST">
+        <form action="{{ route('atividades.store') }}" method="POST">
 
-        @csrf
+            @csrf
 
-        <div>
-            <label>Título</label>
-            <input type="text" name="titulo">
-        </div>
+            <div>
+                <label>Título</label>
+                <input type="text" name="titulo">
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Descrição</label>
-            <textarea name="descricao"></textarea>
-        </div>
+            <div>
+                <label>Descrição</label>
+                <textarea name="descricao"></textarea>
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Data de Entrega</label>
-            <input type="date" name="data_entrega">
-        </div>
+            <div>
+                <label>Data de Entrega</label>
+                <input type="date" name="data_entrega">
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Status</label>
+            <div>
+                <label>Status</label>
 
-            <select name="status">
-                <option value="Pendente">Pendente</option>
-                <option value="Em andamento">Em andamento</option>
-                <option value="Concluída">Concluída</option>
-            </select>
-        </div>
+                <select name="status">
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Concluída">Concluída</option>
+                </select>
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Matéria</label>
+            <div>
+                <label>Matéria</label>
 
-            <select name="materia_id">
+                <select name="materia_id">
 
-                @foreach($materias as $materia)
+                    @foreach($materias as $materia)
 
-                    <option value="{{ $materia->id }}">
-                        {{ $materia->nome }}
-                    </option>
+                        <option value="{{ $materia->id }}">
+                            {{ $materia->nome }}
+                        </option>
 
-                @endforeach
+                    @endforeach
 
-            </select>
-        </div>
+                </select>
+            </div>
 
-        <br>
+            <br>
 
-        <button type="submit">Salvar</button>
+            <button type="submit">Salvar</button>
 
-        <br>
+            <br>
 
-        <a href="{{ route('atividades.index') }}">Cancelar</a>
+            <a href="{{ route('atividades.index') }}">Cancelar</a>
 
-        <br>
+            <br>
 
-        <a href="{{ route('dashboard') }}">⬅ Voltar</a>
+            <a href="{{ route('dashboard') }}">⬅ Voltar</a>
 
-    </form>
+        </form>
 
-</body>
+    </body>
 </html>

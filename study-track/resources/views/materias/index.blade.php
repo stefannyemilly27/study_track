@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Matérias</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Matérias</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
 
-<body>
-    @if(session('success'))
+    <body>
+        @if(session('success'))
 
-    <div style="
-        background: #d4edda;
-        color: #155724;
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-    ">
-        {{ session('success') }}
-    </div>
-
-@endif
-
-    <h1>Matérias</h1>
-
-    <a href="{{ route('materias.create') }}">Nova Matéria</a>
-
-    <hr>
-
-    @foreach($materias as $materia)
-
-        <div>
-
-            <h2>{{ $materia->nome }}</h2>
-
-            <p>Professor: {{ $materia->professor }}</p>
-
-            <p>{{ $materia->descricao }}</p>
-
-            <a href="{{ route('materias.edit', $materia->id) }}">Editar</a>
-
-            <form action="{{ route('materias.destroy', $materia->id) }}" method="POST">
-
-                @csrf
-                @method('DELETE')
-
-                <button type="submit">Excluir</button>
-
-            </form>
-
+        <div style="
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        ">
+            {{ session('success') }}
         </div>
+
+    @endif
+
+        <h1>Matérias</h1>
+
+        <a href="{{ route('materias.create') }}">Nova Matéria</a>
 
         <hr>
 
-        <a href="{{ route('dashboard') }}">⬅ Voltar</a>
+        @foreach($materias as $materia)
 
-    @endforeach
+            <div>
 
-</body>
+                <h2>{{ $materia->nome }}</h2>
+
+                <p>Professor: {{ $materia->professor }}</p>
+
+                <p>{{ $materia->descricao }}</p>
+
+                <a href="{{ route('materias.edit', $materia->id) }}">Editar</a>
+
+                <form action="{{ route('materias.destroy', $materia->id) }}" method="POST">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit">Excluir</button>
+
+                </form>
+
+            </div>
+
+            <hr>
+
+            <a href="{{ route('dashboard') }}">⬅ Voltar</a>
+
+        @endforeach
+
+    </body>
 </html>

@@ -1,71 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Atividades</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Atividades</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
 
-<body>
-    @if(session('success'))
+    <body>
+        @if(session('success'))
 
-    <div style="
-        background: #d4edda;
-        color: #155724;
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-    ">
-        {{ session('success') }}
-    </div>
+        <div style="
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        ">
+            {{ session('success') }}
+        </div>
 
-@endif
+    @endif
 
-    <h1>Atividades</h1>
+        <h1>Atividades</h1>
 
-    <a href="{{ route('atividades.create') }}">
-        Nova Atividade
-    </a>
-
-    <hr>
-
-    @foreach($atividades as $atividade)
-
-        <h3>{{ $atividade->titulo }}</h3>
-
-        <p>
-            <strong>Status:</strong>
-            {{ $atividade->status }}
-        </p>
-
-        <p>
-            <strong>Entrega:</strong>
-            {{ $atividade->data_entrega }}
-        </p>
-
-        <p>
-            <strong>Matéria:</strong>
-            {{ $atividade->materia->nome }}
-        </p>
-
-        <a href="{{ route('atividades.edit', $atividade) }}">Editar</a>
-
-        <form
-            action="{{ route('atividades.destroy', $atividade) }}"
-            method="POST"
-        >
-            @csrf
-            @method('DELETE')
-
-            <button type="submit">Excluir</button>
-
-        </form>
+        <a href="{{ route('atividades.create') }}">
+            Nova Atividade
+        </a>
 
         <hr>
 
-        <a href="{{ route('dashboard') }}">⬅ Voltar</a>
+        @foreach($atividades as $atividade)
 
-    @endforeach
+            <h3>{{ $atividade->titulo }}</h3>
 
-</body>
+            <p>
+                <strong>Status:</strong>
+                {{ $atividade->status }}
+            </p>
+
+            <p>
+                <strong>Entrega:</strong>
+                {{ $atividade->data_entrega }}
+            </p>
+
+            <p>
+                <strong>Matéria:</strong>
+                {{ $atividade->materia->nome }}
+            </p>
+
+            <a href="{{ route('atividades.edit', $atividade) }}">Editar</a>
+
+            <form
+                action="{{ route('atividades.destroy', $atividade) }}"
+                method="POST"
+            >
+                @csrf
+                @method('DELETE')
+
+                <button type="submit">Excluir</button>
+
+            </form>
+
+            <hr>
+
+            <a href="{{ route('dashboard') }}">⬅ Voltar</a>
+
+        @endforeach
+
+    </body>
 </html>

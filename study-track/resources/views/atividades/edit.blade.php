@@ -1,115 +1,116 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Atividade</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Editar Atividade</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
 
-<body>
+    <body>
 
-    <h1>Editar Atividade</h1>
+        <h1>Editar Atividade</h1>
 
-    <form
-        action="{{ route('atividades.update', $atividade) }}"
-        method="POST"
-    >
+        <form
+            action="{{ route('atividades.update', $atividade) }}"
+            method="POST"
+        >
 
-        @csrf
-        @method('PUT')
+            @csrf
+            @method('PUT')
 
-        <div>
-            <label>Título</label>
+            <div>
+                <label>Título</label>
 
-            <input
-                type="text"
-                name="titulo"
-                value="{{ $atividade->titulo }}"
-            >
-        </div>
-
-        <br>
-
-        <div>
-            <label>Descrição</label>
-
-            <textarea name="descricao">{{ $atividade->descricao }}</textarea>
-        </div>
-
-        <br>
-
-        <div>
-            <label>Data de Entrega</label>
-
-            <input
-                type="date"
-                name="data_entrega"
-                value="{{ $atividade->data_entrega }}"
-            >
-        </div>
-
-        <br>
-
-        <div>
-            <label>Status</label>
-
-            <select name="status">
-
-                <option
-                    value="Pendente"
-                    {{ $atividade->status == 'Pendente' ? 'selected' : '' }}
+                <input
+                    type="text"
+                    name="titulo"
+                    value="{{ $atividade->titulo }}"
                 >
-                    Pendente
-                </option>
+            </div>
 
-                <option
-                    value="Em andamento"
-                    {{ $atividade->status == 'Em andamento' ? 'selected' : '' }}
+            <br>
+
+            <div>
+                <label>Descrição</label>
+
+                <textarea name="descricao">{{ $atividade->descricao }}</textarea>
+            </div>
+
+            <br>
+
+            <div>
+                <label>Data de Entrega</label>
+
+                <input
+                    type="date"
+                    name="data_entrega"
+                    value="{{ $atividade->data_entrega }}"
                 >
-                    Em andamento
-                </option>
+            </div>
 
-                <option
-                    value="Concluída"
-                    {{ $atividade->status == 'Concluída' ? 'selected' : '' }}
-                >
-                    Concluída
-                </option>
+            <br>
 
-            </select>
-        </div>
+            <div>
+                <label>Status</label>
 
-        <br>
-
-        <div>
-            <label>Matéria</label>
-
-            <select name="materia_id">
-
-                @foreach($materias as $materia)
+                <select name="status">
 
                     <option
-                        value="{{ $materia->id }}"
-                        {{ $atividade->materia_id == $materia->id ? 'selected' : '' }}
+                        value="Pendente"
+                        {{ $atividade->status == 'Pendente' ? 'selected' : '' }}
                     >
-                        {{ $materia->nome }}
+                        Pendente
                     </option>
 
-                @endforeach
+                    <option
+                        value="Em andamento"
+                        {{ $atividade->status == 'Em andamento' ? 'selected' : '' }}
+                    >
+                        Em andamento
+                    </option>
 
-            </select>
+                    <option
+                        value="Concluída"
+                        {{ $atividade->status == 'Concluída' ? 'selected' : '' }}
+                    >
+                        Concluída
+                    </option>
 
-        </div>
+                </select>
+            </div>
 
-        <br>
+            <br>
 
-        <button type="submit">Atualizar</button>
+            <div>
+                <label>Matéria</label>
 
-        <br>
-        
-        <a href="{{ route('atividades.index') }}">Cancelar</a>
+                <select name="materia_id">
 
-    </form>
+                    @foreach($materias as $materia)
 
-</body>
+                        <option
+                            value="{{ $materia->id }}"
+                            {{ $atividade->materia_id == $materia->id ? 'selected' : '' }}
+                        >
+                            {{ $materia->nome }}
+                        </option>
+
+                    @endforeach
+
+                </select>
+
+            </div>
+
+            <br>
+
+            <button type="submit">Atualizar</button>
+
+            <br>
+            
+            <a href="{{ route('atividades.index') }}">Cancelar</a>
+
+        </form>
+
+    </body>
 </html>

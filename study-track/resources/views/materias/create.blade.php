@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Criar Matéria</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Criar Matéria</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
 
-<body>
+    <body>
 
-    <h1>Criar Matéria</h1>
+        <h1>Criar Matéria</h1>
 
-    <form action="{{ route('materias.store') }}" method="POST">
+        <form action="{{ route('materias.store') }}" method="POST">
 
-        @csrf
+            @csrf
 
-        <div>
-            <label>Nome</label>
-            <input type="text" name="nome">
-        </div>
+            <div>
+                <label>Nome</label>
+                <input type="text" name="nome">
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Professor</label>
-            <input type="text" name="professor">
-        </div>
+            <div>
+                <label>Professor</label>
+                <input type="text" name="professor">
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Descrição</label>
-            <textarea name="descricao"></textarea>
-        </div>
+            <div>
+                <label>Descrição</label>
+                <textarea name="descricao"></textarea>
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Cor</label>
-            <input type="color" name="cor">
-        </div>
+            <div>
+                <label>Cor</label>
+                <input type="color" name="cor">
+            </div>
 
-        <br>
+            <br>
 
-        <button type="submit">Salvar</button>
+            <button type="submit">Salvar</button>
 
-        <a href="{{ route('materias.index') }}">
-            Cancelar
-        </a>
+            <a href="{{ route('materias.index') }}">
+                Cancelar
+            </a>
 
-        <a href="{{ route('dashboard') }}">⬅ Voltar</a>
+            <a href="{{ route('dashboard') }}">⬅ Voltar</a>
 
-    </form>
+        </form>
 
-</body>
+    </body>
 </html>

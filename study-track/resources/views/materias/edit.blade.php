@@ -1,69 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Matéria</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Editar Matéria</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
 
-<body>
+    <body>
 
-    <h1>Editar Matéria</h1>
+        <h1>Editar Matéria</h1>
 
-    <form action="{{ route('materias.update', $materia->id) }}" method="POST">
+        <form action="{{ route('materias.update', $materia->id) }}" method="POST">
 
-        @csrf
-        @method('PUT')
+            @csrf
+            @method('PUT')
 
-        <div>
-            <label>Nome</label>
+            <div>
+                <label>Nome</label>
 
-            <input
-                type="text"
-                name="nome"
-                value="{{ $materia->nome }}"
-            >
-        </div>
+                <input
+                    type="text"
+                    name="nome"
+                    value="{{ $materia->nome }}"
+                >
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Professor</label>
+            <div>
+                <label>Professor</label>
 
-            <input
-                type="text"
-                name="professor"
-                value="{{ $materia->professor }}"
-            >
-        </div>
+                <input
+                    type="text"
+                    name="professor"
+                    value="{{ $materia->professor }}"
+                >
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Descrição</label>
+            <div>
+                <label>Descrição</label>
 
-            <textarea name="descricao">{{ $materia->descricao }}</textarea>
-        </div>
+                <textarea name="descricao">{{ $materia->descricao }}</textarea>
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label>Cor</label>
+            <div>
+                <label>Cor</label>
 
-            <input
-                type="color"
-                name="cor"
-                value="{{ $materia->cor }}"
-            >
-        </div>
+                <input
+                    type="color"
+                    name="cor"
+                    value="{{ $materia->cor }}"
+                >
+            </div>
 
-        <br>
+            <br>
 
-        <button type="submit">Atualizar</button>
+            <button type="submit">Atualizar</button>
 
-        <a href="{{ route('materias.index') }}">Cancelar</a>
+            <a href="{{ route('materias.index') }}">Cancelar</a>
 
-    </form>
+        </form>
 
-</body>
+    </body>
 </html>

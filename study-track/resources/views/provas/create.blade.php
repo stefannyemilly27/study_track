@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Criar Prova</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Criar Prova</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
 
-<body>
+    <body>
 
-<h1>Criar Prova</h1>
+    <h1>Criar Prova</h1>
 
-<form action="{{ route('provas.store') }}" method="POST">
-    @csrf
+    <form action="{{ route('provas.store') }}" method="POST">
+        @csrf
 
-    <label>Título</label><br>
-    <input type="text" name="titulo" required><br><br>
+        <label>Título</label><br>
+        <input type="text" name="titulo" required><br><br>
 
-    <label>Nota</label><br>
-    <input type="number" step="0.01" min="0" max="10" name="nota" required><br><br>
+        <label>Nota</label><br>
+        <input type="number" step="0.01" min="0" max="10" name="nota" required><br><br>
 
-    <label>Data da Prova</label><br>
-    <input type="date" name="data_prova" required><br><br>
+        <label>Data da Prova</label><br>
+        <input type="date" name="data_prova" required><br><br>
 
-    <label>Matéria</label><br>
-    <select name="materia_id" required>
-        <option value="">Selecione uma matéria</option>
+        <label>Matéria</label><br>
+        <select name="materia_id" required>
+            <option value="">Selecione uma matéria</option>
 
-        @foreach($materias as $materia)
-            <option value="{{ $materia->id }}">
-                {{ $materia->nome }}
-            </option>
-        @endforeach
+            @foreach($materias as $materia)
+                <option value="{{ $materia->id }}">
+                    {{ $materia->nome }}
+                </option>
+            @endforeach
 
-    </select>
+        </select>
 
-    <br><br>
+        <br><br>
 
-    <button type="submit">Salvar Prova</button>
-</form>
+        <button type="submit">Salvar Prova</button>
+    </form>
 
-<br>
+    <br>
 
-<a href="{{ route('dashboard') }}">⬅ Voltar</a>
+    <a href="{{ route('dashboard') }}">⬅ Voltar</a>
 
-</body>
+    </body>
 
 </html>
